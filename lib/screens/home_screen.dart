@@ -36,8 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
         coinMarket = coinModelFromJson(x);
       });
     } else {
-      print(response.statusCode);
+      throw response.statusCode;
     }
+    return null;
   }
 
   @override
@@ -189,17 +190,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                _isRefreshing
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 4,
-                        itemBuilder: (context, index) =>
-                            Item(item: coinMarket![index]),
-                      ),
+                SizedBox(
+                  height: height * 0.37,
+                  child: _isRefreshing
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0XFFFBC700),
+                          ),
+                        )
+                      : coinMarket == null
+                          ? Padding(
+                              padding: EdgeInsets.all(height * 0.06),
+                              child: const Center(
+                                child: Text(
+                                  "Attention the api is free, so you can't send multiple request per second, please wait and try again later.",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: 4,
+                              itemBuilder: (context, index) =>
+                                  Item(item: coinMarket![index]),
+                            ),
+                ),
                 SizedBox(
                   height: height * 0.02,
                 ),
@@ -223,13 +241,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(left: width * 0.03),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: coinMarket!.length,
-                      itemBuilder: (context, index) => RecommendItem(
-                        item: coinMarket![index],
-                      ),
-                    ),
+                    child: _isRefreshing
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Color(0XFFFBC700),
+                            ),
+                          )
+                        : coinMarket == null
+                            ? Padding(
+                                padding: EdgeInsets.all(height * 0.06),
+                                child: const Center(
+                                  child: Text(
+                                    "Attention the api is free, so you can't send multiple request per second, please wait and try again later.",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: coinMarket!.length,
+                                itemBuilder: (context, index) => RecommendItem(
+                                  item: coinMarket![index],
+                                ),
+                              ),
                   ),
                 ),
                 SizedBox(

@@ -1,4 +1,4 @@
-import 'package:crypto_app/splash.dart';
+import 'package:crypto_app/screens/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,6 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Crypto',
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0XFFFBC700),
+          foregroundColor: Colors.black,
+        ),
+      ),
       home: const Splash(),
     );
   }

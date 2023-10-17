@@ -1,4 +1,4 @@
-import 'package:crypto_app/home_screen.dart';
+import 'package:crypto_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatefulWidget {
@@ -10,11 +10,11 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int _currentIndex = 0;
-  List<Widget> _pages = [
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+  final List<Widget> _pages = [
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
   ];
   @override
   Widget build(BuildContext context) {

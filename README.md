@@ -1,7 +1,11 @@
-# crypto_app
+# Crypto app
 
-A simple cypto flutter app
+A simple crypto flutter app using free API
 
 # Screenshot
 
-![image01.png](screenshot%2Fimage01.png)
+![1.png](screenshot%2F1.png)
+
+![2.png](screenshot%2F2.png)
+
+![3.png](screenshot%2F3.png)
